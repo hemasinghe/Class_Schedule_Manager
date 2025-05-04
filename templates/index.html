@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Class Schedule Manager</title>
+</head>
+<body>
+    <h1>Class Schedule Manager</h1>
+
+    <form action="/add" method="POST">
+        <input type="text" name="subject" placeholder="Subject" required><br>
+        <input type="text" name="teacher" placeholder="Teacher" required><br>
+        <input type="date" name="date" required><br>
+        <input type="time" name="time" required><br>
+        <button type="submit">Add Class</button>
+    </form>
+
+    <h2>Scheduled Classes</h2>
+    <ul>
+        {% for item in schedule %}
+        <li>{{ item.date }} {{ item.time }} - {{ item.subject }} ({{ item.teacher }})
+<br><br>
+	<form action="/delete/{{loop.index0}}" method="POST" style="display:inline;">
+		<button type="submit">Delete</button>
+	</form>
+<br><br>
+
+	</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
